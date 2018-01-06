@@ -12,14 +12,16 @@
 class DoubleLinkedList {
 public:
     DoubleLinkedList();
-    void pushBack(const string &value);
-    void pushFront(const string &value);
-    string popBack();
-    string popFront();
+    DoubleLinkedList(const DoubleLinkedList &rhs);
+    void pushBack(char *value);
+    void pushFront(char *value);
+    char* popBack();
+    char* popFront();
 
     //operators
     bool operator==(const DoubleLinkedList &rhs) const;
     bool operator!=(const DoubleLinkedList &rhs) const;
+    DoubleLinkedList& operator=(const DoubleLinkedList& right);
     DoubleLinkedList operator+(const DoubleLinkedList& right);
     DoubleLinkedList& operator+=(const DoubleLinkedList& right);
 

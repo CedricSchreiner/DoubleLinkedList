@@ -16,13 +16,13 @@ public:
 //    template <typename T>
 //    ListElement(T value);
     ~ListElement() = default;
-    explicit ListElement(string value);
+    explicit ListElement(char *value);
     void setNext(ListElement *next);
     void setPrvious(ListElement *previous);
-    void setValue(string value);
+    void setValue(char *value);
     ListElement* getNext();
     ListElement* getPrevious();
-    string getValue();
+    char* getValue();
 
     //operators
     bool operator==(const ListElement &rhs) const;
@@ -35,6 +35,6 @@ private:
     ListElement *previous;
 //    template <typename T>
 //    T value;
-    string value;
+    char *value;
 };
 

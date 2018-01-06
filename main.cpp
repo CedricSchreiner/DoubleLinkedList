@@ -5,25 +5,27 @@ using namespace std;
 
 int main() {
 
-    DoubleLinkedList *list = new DoubleLinkedList();
-    DoubleLinkedList *list2 = new DoubleLinkedList();
+    auto *list = new DoubleLinkedList();
+    auto *list2 = new DoubleLinkedList();
 
 
-    string string1 = "element1";
-    string string2 = "element2";
-    string string3 = "element3";
+    char *string1 = "element1";
+    char *string2 = "element2";
+    char *string3 = "element3";
 
-    string string4 = "element1";
-    string string5 = "element2";
-    string string6 = "element3";
+    char *string4 = "element4";
+    char *string5 = "element5";
+    char *string6 = "element6";
 
-    list2->pushFront(string4);
-    list2->pushFront(string5);
-    list2->pushFront(string6);
+    list->pushBack(string1);
+    list->pushBack(string2);
+    list->pushBack(string3);
 
-    list->pushFront(string1);
-    list->pushFront(string2);
-    list->pushFront(string3);
+    list2->pushBack(string4);
+    list2->pushBack(string5);
+    list2->pushBack(string6);
+
+
 
     if (*list == *list2) {
         cout << "gleich" << endl;

@@ -2,7 +2,6 @@
 // Created by Cedric on 06.01.2018.
 //
 
-#include <iostream>
 #include "DoubleLinkedList.hpp"
 
 DoubleLinkedList::DoubleLinkedList() {
@@ -11,7 +10,18 @@ DoubleLinkedList::DoubleLinkedList() {
     this->numberOfElements = 0;
 }
 
-void DoubleLinkedList::pushBack(const string &value) {
+DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList &rhs) :
+        header {new ListElement(rhs.header->getValue())},
+        tail {new ListElement(rhs.tail->getValue())},
+        numberOfElements {0} {
+    ListElement *rhsElement = rhs.header;
+    while(rhsElement != nullptr) {
+        this->pushFront(rhsElement->getValue());
+        rhsElement = rhsElement->getNext();
+    }
+}
+
+void DoubleLinkedList::pushBack(char *value) {
     //insert first element
     if (this->numberOfElements == 0) {
         this->header = new ListElement(value);
@@ -30,7 +40,7 @@ void DoubleLinkedList::pushBack(const string &value) {
     this->numberOfElements++;
 }
 
-void DoubleLinkedList::pushFront(const string &value) {
+void DoubleLinkedList::pushFront(char *value) {
     if (this->numberOfElements == 0) {
         this->header = new ListElement(value);
         this->tail = new ListElement(value);
@@ -48,18 +58,18 @@ void DoubleLinkedList::pushFront(const string &value) {
     this->numberOfElements++;
 }
 
-string DoubleLinkedList::popBack() {
+char* DoubleLinkedList::popBack() {
     if (this->numberOfElements == 0) {
         return nullptr;
     } else if (this->numberOfElements == 1) {
         this->numberOfElements--;
-        string value = this->tail->getValue();
+        char *value = this->tail->getValue();
         this->header = nullptr;
         this->tail = nullptr;
         return value;
     } else {
         this->numberOfElements--;
-        string value = this->tail->getValue();
+        char *value = this->tail->getValue();
         this->tail = this->tail->getPrevious();
         this->tail->getNext()->setPrvious(nullptr);
         this->tail->setNext(nullptr);
@@ -67,18 +77,18 @@ string DoubleLinkedList::popBack() {
     }
 }
 
-string DoubleLinkedList::popFront() {
+char* DoubleLinkedList::popFront() {
     if (this->numberOfElements == 0) {
         return nullptr;
     } else if (this->numberOfElements == 1) {
         this->numberOfElements--;
-        string value = this->header->getValue();
+        char *value = this->header->getValue();
         this->header = nullptr;
         this->tail = nullptr;
         return value;
     } else {
         this->numberOfElements--;
-        string value = this->header->getValue();
+        char *value = this->header->getValue();
         this->header = this->header->getNext();
         this->header->getPrevious()->setNext(nullptr);
         this->header->setPrvious(nullptr);
@@ -107,4 +117,32 @@ bool DoubleLinkedList::operator==(const DoubleLinkedList &rhs) const {
 
 bool DoubleLinkedList::operator!=(const DoubleLinkedList &rhs) const {
     return !(rhs == *this);
+}
+
+DoubleLinkedList& DoubleLinkedList::operator=(const DoubleLinkedList &right) {
+    this->header = nullptr;
+    this->tail = nullptr;
+    this->numberOfElements = 0;
+    ListElement *rhsElement = right.header;
+    while(rhsElement != nullptr) {
+        this->pushFront(rhsElement->getValue());
+        rhsElement = rhsElement->getNext();
+    }
+    return *this;
+}
+
+DoubleLinkedList DoubleLinkedList::operator+(const DoubleLinkedList &right) {
+    //DoubleLinkedList tmp(right);
+    *this += right;
+    return *this;
+}
+
+DoubleLinkedList& DoubleLinkedList::operator+=(const DoubleLinkedList &right) {
+    ListElement *element = right.header;
+    while(element != nullptr) {
+        this->pushBack(element->getValue());
+        element = element->getNext();
+    }
+
+    return *this;
 }

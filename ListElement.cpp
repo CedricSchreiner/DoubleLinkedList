@@ -7,10 +7,10 @@
 
 
 
-ListElement::ListElement(string value) {
+ListElement::ListElement(char *value) {
     this->previous = nullptr;
     this->next = nullptr;
-    this->value = move(value);
+    this->value = value;
 }
 
 void ListElement::setPrvious(ListElement *previous) {
@@ -21,8 +21,8 @@ void ListElement::setNext(ListElement *next) {
     this->next = next;
 }
 
-void ListElement::setValue(string value) {
-    this->value = move(value);
+void ListElement::setValue(char *value) {
+    this->value = value;
 }
 
 ListElement* ListElement::getNext() {
@@ -33,7 +33,7 @@ ListElement* ListElement::getPrevious() {
     return this->previous;
 }
 
-string ListElement::getValue() {
+char* ListElement::getValue() {
     return this->value;
 }
 
