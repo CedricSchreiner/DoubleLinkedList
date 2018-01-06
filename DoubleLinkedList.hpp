@@ -12,6 +12,7 @@
 class DoubleLinkedList {
 public:
     DoubleLinkedList();
+    DoubleLinkedList(char **array);
     DoubleLinkedList(const DoubleLinkedList &rhs);
     void pushBack(char *value);
     void pushFront(char *value);
@@ -24,6 +25,7 @@ public:
     DoubleLinkedList& operator=(const DoubleLinkedList& right);
     DoubleLinkedList operator+(const DoubleLinkedList& right);
     DoubleLinkedList& operator+=(const DoubleLinkedList& right);
+    char* operator[](int i);
 
 protected:
 private:

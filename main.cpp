@@ -6,6 +6,8 @@ using namespace std;
 int main() {
 
     auto *list = new DoubleLinkedList();
+    char *test[] = {"ss2", "ss34"};
+    DoubleLinkedList l(test);
     auto *list2 = new DoubleLinkedList();
 
 
@@ -25,7 +27,10 @@ int main() {
     list2->pushBack(string5);
     list2->pushBack(string6);
 
+    DoubleLinkedList test2(*list);
+    cout << "ok" << test2[0] << endl;
 
+    char *pl = test2.popBack();
 
     if (*list == *list2) {
         cout << "gleich" << endl;

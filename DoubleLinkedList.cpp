@@ -2,12 +2,25 @@
 // Created by Cedric on 06.01.2018.
 //
 
+#include <iostream>
 #include "DoubleLinkedList.hpp"
 
 DoubleLinkedList::DoubleLinkedList() {
     this->header = nullptr;
     this->tail = nullptr;
     this->numberOfElements = 0;
+}
+
+DoubleLinkedList::DoubleLinkedList(char **array) {
+    this->header = nullptr;
+    this->tail = nullptr;
+    this->numberOfElements = 0;
+
+    int i = 0;
+    while (array[i] != nullptr) {
+        this->pushFront(array[i]);
+        i++;
+    }
 }
 
 DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList &rhs) :
@@ -145,4 +158,18 @@ DoubleLinkedList& DoubleLinkedList::operator+=(const DoubleLinkedList &right) {
     }
 
     return *this;
+}
+
+char* DoubleLinkedList::operator[](const int i) {
+    int index = 0;
+    ListElement *element = header;
+    if (i >= 0 && i < numberOfElements) {
+        while(index < i) {
+            element = element->getNext();
+            index++;
+        }
+        return element->getValue();
+    } else {
+        return nullptr;
+    }
 }
