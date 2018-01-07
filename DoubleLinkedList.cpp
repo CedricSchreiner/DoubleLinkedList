@@ -1,9 +1,9 @@
 //
 // Created by Cedric on 06.01.2018.
 //
-
-#include <iostream>
-#include "DoubleLinkedList.hpp"
+#include <vector>
+#include "ListIterator.hpp"
+//#include "DoubleLinkedList.hpp"
 
 DoubleLinkedList::DoubleLinkedList() {
     this->header = nullptr;
@@ -126,6 +126,28 @@ void DoubleLinkedList::removeElement(int position) {
     }
 }
 
+const char* DoubleLinkedList::toString() {
+    ListElement *element = this->header;
+    auto *string = new std::string;
+    while(element != nullptr) {
+        *string += element->getValue();
+        *string += '\n';
+        element = element->getNext();
+    }
+    return string->c_str();
+}
+
+const char* DoubleLinkedList::printBackwards() {
+    ListElement *element = this->tail;
+    auto *string = new std::string;
+    while(element != nullptr) {
+        *string += element->getValue();
+        *string += '\n';
+        element = element->getPrevious();
+    }
+    return string->c_str();
+}
+
 bool DoubleLinkedList::operator==(const DoubleLinkedList &rhs) const {
     ListElement *thisElement = this->header;
     ListElement *rhsElement = rhs.header;
@@ -162,7 +184,6 @@ DoubleLinkedList& DoubleLinkedList::operator=(const DoubleLinkedList &right) {
 }
 
 DoubleLinkedList DoubleLinkedList::operator+(const DoubleLinkedList &right) {
-    //DoubleLinkedList tmp(right);
     *this += right;
     return *this;
 }

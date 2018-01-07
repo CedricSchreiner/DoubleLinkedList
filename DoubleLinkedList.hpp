@@ -19,6 +19,8 @@ public:
     char* popBack();
     char* popFront();
     void removeElement(int position);
+    const char* toString();
+    const char* printBackwards();
 
     //operators
     bool operator==(const DoubleLinkedList &rhs) const;
