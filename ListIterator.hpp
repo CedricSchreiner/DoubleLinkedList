@@ -12,13 +12,11 @@
 class ListIterator {
 public:
     explicit ListIterator(DoubleLinkedList *list);
-    bool hasnext();
+    bool hasNext();
     ListElement* next();
     void remove();
 protected:
 private:
     DoubleLinkedList *list;
-    ListElement *iteratorElement;
-    ListElement *nextElement;
     int position;
 };

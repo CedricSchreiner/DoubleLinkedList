@@ -6,12 +6,10 @@
 
 ListIterator::ListIterator(DoubleLinkedList *list) {
     this->list = list;
-    this->iteratorElement = list->getHeader();
-    this->nextElement = iteratorElement->getNext();
     this->position = 0;
 }
 
-bool ListIterator::hasnext() {
+bool ListIterator::hasNext() {
     bool tmp = this->list->operator[](position) != nullptr;
     return tmp;
 }

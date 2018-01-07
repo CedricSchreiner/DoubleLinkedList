@@ -118,7 +118,7 @@ ListElement* DoubleLinkedList::getTail() {
 }
 
 void DoubleLinkedList::removeElement(int position) {
-    if (this->numberOfElements == 1) {
+    if (position == 1) {
         this->popFront();
     } else {
         ListElement *element = this->operator[](position - 1);
@@ -129,8 +129,8 @@ void DoubleLinkedList::removeElement(int position) {
             element->getNext()->setPrvious(element->getPrevious());
             element->setNext(nullptr);
             element->setPrvious(nullptr);
+            this->numberOfElements--;
         }
-        this->numberOfElements--;
     }
 }
 
