@@ -34,18 +34,18 @@ DoubleLinkedList::DoubleLinkedList(const DoubleLinkedList &rhs) :
     }
 }
 
-void DoubleLinkedList::pushBack(char *value) {
+void DoubleLinkedList::pushBack(const char *value) {
     //insert first element
     if (this->numberOfElements == 0) {
         this->header = new ListElement(value);
         this->tail = new ListElement(value);
     } else if (this->numberOfElements == 1) {
-        ListElement *element = new ListElement(value);
+        auto *element = new ListElement(value);
         this->tail = element;
         this->tail->setPrvious(this->header);
         this->header->setNext(element);
     } else {
-        ListElement * element = new ListElement(value);
+        auto * element = new ListElement(value);
         element->setPrvious(this->tail);
         this->tail->setNext(element);
         this->tail = element;
@@ -53,17 +53,17 @@ void DoubleLinkedList::pushBack(char *value) {
     this->numberOfElements++;
 }
 
-void DoubleLinkedList::pushFront(char *value) {
+void DoubleLinkedList::pushFront(const char *value) {
     if (this->numberOfElements == 0) {
         this->header = new ListElement(value);
         this->tail = new ListElement(value);
     } else if (this->numberOfElements == 1) {
-        ListElement *element = new ListElement(value);
+        auto *element = new ListElement(value);
         this->header = element;
         this->header->setNext(this->tail);
         this->tail->setPrvious(element);
     } else {
-        ListElement * element = new ListElement(value);
+        auto * element = new ListElement(value);
         element->setNext(this->header);
         this->header->setPrvious(element);
         this->header = element;
@@ -107,14 +107,6 @@ char* DoubleLinkedList::popFront() {
         this->header->setPrvious(nullptr);
         return value;
     }
-}
-
-ListElement* DoubleLinkedList::getHeader() {
-    return this->header;
-}
-
-ListElement* DoubleLinkedList::getTail() {
-    return this->tail;
 }
 
 void DoubleLinkedList::removeElement(int position) {

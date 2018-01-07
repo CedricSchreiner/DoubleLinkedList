@@ -16,10 +16,10 @@ public:
 //    template <typename T>
 //    ListElement(T value);
     ~ListElement() = default;
-    explicit ListElement(char *value);
+    explicit ListElement(const char *value);
     void setNext(ListElement *next);
     void setPrvious(ListElement *previous);
-    void setValue(char *value);
+    void setValue(const char *value);
     ListElement* getNext();
     ListElement* getPrevious();
     char* getValue();
@@ -35,6 +35,6 @@ private:
     ListElement *previous;
 //    template <typename T>
 //    T value;
-    char *value;
+    const char *value;
 };
 

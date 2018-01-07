@@ -7,7 +7,7 @@
 
 
 
-ListElement::ListElement(char *value) {
+ListElement::ListElement(const char *value) {
     this->previous = nullptr;
     this->next = nullptr;
     this->value = value;
@@ -21,7 +21,7 @@ void ListElement::setNext(ListElement *next) {
     this->next = next;
 }
 
-void ListElement::setValue(char *value) {
+void ListElement::setValue(const char *value) {
     this->value = value;
 }
 
@@ -34,7 +34,7 @@ ListElement* ListElement::getPrevious() {
 }
 
 char* ListElement::getValue() {
-    return this->value;
+    return const_cast<char *>(this->value);
 }
 
 bool ListElement::operator==(const ListElement &rhs) const {

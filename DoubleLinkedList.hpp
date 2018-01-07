@@ -14,12 +14,10 @@ public:
     DoubleLinkedList();
     explicit DoubleLinkedList(char **array);
     DoubleLinkedList(const DoubleLinkedList &rhs);
-    void pushBack(char *value);
-    void pushFront(char *value);
+    void pushBack(const char *value);
+    void pushFront(const char *value);
     char* popBack();
     char* popFront();
-    ListElement* getHeader();
-    ListElement* getTail();
     void removeElement(int position);
 
     //operators
