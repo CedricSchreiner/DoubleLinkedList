@@ -109,6 +109,31 @@ char* DoubleLinkedList::popFront() {
     }
 }
 
+ListElement* DoubleLinkedList::getHeader() {
+    return this->header;
+}
+
+ListElement* DoubleLinkedList::getTail() {
+    return this->tail;
+}
+
+void DoubleLinkedList::removeElement(int position) {
+    if (this->numberOfElements == 1) {
+        this->popFront();
+    } else {
+        ListElement *element = this->operator[](position - 1);
+        if (element == this->tail) {
+            this->popBack();
+        } else {
+            element->getPrevious()->setNext(element->getNext());
+            element->getNext()->setPrvious(element->getPrevious());
+            element->setNext(nullptr);
+            element->setPrvious(nullptr);
+        }
+        this->numberOfElements--;
+    }
+}
+
 bool DoubleLinkedList::operator==(const DoubleLinkedList &rhs) const {
     ListElement *thisElement = this->header;
     ListElement *rhsElement = rhs.header;
@@ -160,7 +185,7 @@ DoubleLinkedList& DoubleLinkedList::operator+=(const DoubleLinkedList &right) {
     return *this;
 }
 
-char* DoubleLinkedList::operator[](const int i) {
+ListElement* DoubleLinkedList::operator[](const int i) {
     int index = 0;
     ListElement *element = header;
     if (i >= 0 && i < numberOfElements) {
@@ -168,7 +193,7 @@ char* DoubleLinkedList::operator[](const int i) {
             element = element->getNext();
             index++;
         }
-        return element->getValue();
+        return element;
     } else {
         return nullptr;
     }

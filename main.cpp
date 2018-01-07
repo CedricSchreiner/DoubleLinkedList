@@ -1,7 +1,11 @@
 #include <iostream>
-#include "DoubleLinkedList.hpp"
+#include "ListIterator.hpp"
 
 using namespace std;
+
+void testList() {
+    DoubleLinkedList *list = new DoubleLinkedList();
+}
 
 int main() {
 
@@ -9,7 +13,6 @@ int main() {
     char *test[] = {"ss2", "ss34"};
     DoubleLinkedList l(test);
     auto *list2 = new DoubleLinkedList();
-
 
     char *string1 = "element1";
     char *string2 = "element2";
@@ -22,6 +25,22 @@ int main() {
     list->pushBack(string1);
     list->pushBack(string2);
     list->pushBack(string3);
+
+    ListIterator iterator(list);
+
+//    while(iterator.hasnext()) {
+//        cout << iterator.next()->getValue() << endl;
+//        iterator.remove();
+//    }
+
+    cout << iterator.next()->getValue() << endl;
+    cout << iterator.next()->getValue() << endl;
+    iterator.remove();
+    cout << iterator.next()->getValue() << endl;
+
+    //cout << iterator.next()->getValue() << endl;
+    //iterator.remove();
+    //cout << iterator.next()->getValue() << endl;
 
     list2->pushBack(string4);
     list2->pushBack(string5);
@@ -39,7 +58,6 @@ int main() {
     }
 
     cout << list->popBack() << endl;
-    cout << list->popFront() << endl;
     cout << list->popFront() << endl;
     cout << "Hello, World!" << endl;
 
